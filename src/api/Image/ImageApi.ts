@@ -6,26 +6,23 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
   let image = context.bindings.image;
 
+  // If the image isn't in blob storage download it from bgg
+  // and save it for next time
   if (image == undefined) {
     let imageId = context.bindingData.imageId;
-    const bggResponse = await BggClient.get<BggImageResponse>(`images/${imageId}`);
-    
-    console.log(bggResponse.data.images.original.url);
-    const imageResponse = await ImageClient.get(bggResponse.data.images.original.url);
-    context.res = imageResponse;
-// //   let data = response.data.items.map<HotListItem>(item =>
-// //     ({
-// //       id: item.objectid,
-// //       name: item.name,
-// //       yearPublished: item.yearpublished,
-// //       imageId: item.rep_imageid
-// //     })
-// //   );
 
-//   context.res.body = response.data;
+    const bggResponse = await BggClient.get<BggImageResponse>(`images/${imageId}`);
+
+    const imageResponse = await ImageClient.get(bggResponse.data.images.original.url);
+
+    image = Buffer.from(imageResponse.data, 'base64');
+
+    context.bindings.saveImage = image;
   }
-  else {
-    context.res.body = image;
+
+  context.res = {
+    headers: {'Content-Type': 'image/png' },
+    body: image
   }
 };
 

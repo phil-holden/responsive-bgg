@@ -9,7 +9,7 @@ const BggClient = axios.create({
 });
 
 const ImageClient = axios.create({
-  responseType: 'blob'
+  responseType: 'arraybuffer'
 });
 
 export { BggClient, ImageClient }
