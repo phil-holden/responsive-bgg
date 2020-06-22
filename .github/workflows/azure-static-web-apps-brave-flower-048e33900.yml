@@ -24,13 +24,11 @@ jobs:
     - name: Azure Login
       uses: Azure/login@v1.1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIAL }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Create Infrastructure
-      uses: Azure/cli@v1.0.0
-      with:
-        inlineScript: |
-          az storage account create --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --name ${{ env.AZURE_STORAGE_NAME }}
+      run: |
+        az storage account create --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --name ${{ env.AZURE_STORAGE_NAME }}
 
     - name: Build And Deploy
       id: builddeploy
