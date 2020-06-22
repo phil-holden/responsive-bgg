@@ -4,6 +4,7 @@
       <v-layout wrap>
         <v-flex lg3 v-for="item in hotlist.items" :key="item.id">
           <v-card height="100%" elevation="5">
+            <v-img height="80%" :src="`/api/image/${item.imageId}`"></v-img>
             <v-card-title>{{ item.name }}</v-card-title>
             <v-card-text>Published: {{ item.yearPublished }}</v-card-text>
           </v-card>
