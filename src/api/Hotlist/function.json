@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "getbggtop"
+      "route": "hotlist/{count:int?}"
     },
     {
       "type": "http",
@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/GetBggTop/index.js"
+  "scriptFile": "../dist/Hotlist/HotlistApi.js"
 }
