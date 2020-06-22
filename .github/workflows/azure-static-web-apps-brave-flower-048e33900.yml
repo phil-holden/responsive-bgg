@@ -9,13 +9,29 @@ on:
     branches:
     - master
 
-jobs:
+env:
+  AZURE_RESOURCE_GROUP: rg-responsive-bgg
+  AZURE_STORAGE_NAME: bggstorage
+
+  jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
     - uses: actions/checkout@v1
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIAL }}
+
+    - name: Create Infrastructure
+      uses: actions/CLI@v1
+      with:
+        inlineScript: |
+          az storage account create --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --name ${{ env.AZURE_STORAGE_NAME }}
+
     - name: Build And Deploy
       id: builddeploy
       uses: Azure/static-web-apps-deploy@v0.0.1-preview
