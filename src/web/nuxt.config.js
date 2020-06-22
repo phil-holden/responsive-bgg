@@ -39,18 +39,15 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxt/http',
+    '@nuxtjs/proxy'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
-  /*
-   ** vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
-   */
+  http: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': { target: process.env.API_BASE_URL, changeOrigin: process.env.API_CORS_CHANGE_ORIGIN }
+  },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
