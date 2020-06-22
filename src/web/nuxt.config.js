@@ -46,7 +46,7 @@ export default {
     proxy: true
   },
   proxy: {
-    '/api/': { target: process.env.API_BASE_URL, changeOrigin: process.env.API_CORS_CHANGE_ORIGIN }
+    '/api/': { target: process.env.API_BASE_URL || '/api/', changeOrigin: process.env.API_CORS_CHANGE_ORIGIN || false }
   },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
