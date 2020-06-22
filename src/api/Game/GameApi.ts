@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { BggClient } from "../Common/BggClient"
+import { BggClient } from "../Common/ApiClients"
 import { GameContext } from "./GameContext"
 import { BggGeekItemResponse, GameResponse } from "./GameModels"
 

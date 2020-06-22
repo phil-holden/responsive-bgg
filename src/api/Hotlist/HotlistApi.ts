@@ -1,7 +1,7 @@
 import { AzureFunction, HttpRequest } from "@azure/functions"
+import { BggClient } from "../Common/ApiClients"
 import { HotlistContext } from './HotlistContext';
 import { HotlistItem, BggHotnessResponse } from "./HotlistModels";
-import { BggClient } from "../Common/BggClient"
 
 const httpTrigger: AzureFunction = async function (context: HotlistContext, req: HttpRequest): Promise<void> {
   let requestCount = context.bindingData.count;
