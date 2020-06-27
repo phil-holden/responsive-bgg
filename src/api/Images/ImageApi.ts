@@ -13,7 +13,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
     const bggResponse = await BggClient.get<BggImageResponse>(`images/${imageId}`);
 
-    const imageResponse = await ImageClient.get(bggResponse.data.images.original.url);
+    const imageResponse = await ImageClient.get(bggResponse.data.images.square200.url);
 
     image = Buffer.from(imageResponse.data, 'base64');
 

@@ -4,7 +4,7 @@
       <v-layout wrap>
         <v-flex lg3 v-for="item in hotlist.items" :key="item.id">
           <v-card height="100%" elevation="5">
-            <v-img height="80%" :src="`/api/image/${item.imageId}`"></v-img>
+            <v-img height="80%" :src="`/api/images/${item.imageId}`"></v-img>
             <v-card-title>{{ item.name }}</v-card-title>
             <v-card-text>Published: {{ item.yearPublished }}</v-card-text>
           </v-card>
@@ -43,7 +43,7 @@ export default {
   },
   async asyncData({ $http }) {
     // const { data } = await this.$http.$get('http://icanhazip.com');
-    const hotlist = await $http.$get('/api/hotlist');
+    const hotlist = await $http.$get('/api/games/hot');
 
     return { hotlist }
   }

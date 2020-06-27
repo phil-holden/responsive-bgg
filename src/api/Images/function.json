@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "image/{imageId}"
+      "route": "images/{imageId}"
     },
     {
       "name": "image",
@@ -32,5 +32,5 @@
       "direction": "out"
     }    
   ],
-  "scriptFile": "../dist/Image/ImageApi.js"
+  "scriptFile": "../dist/Images/ImageApi.js"
 }

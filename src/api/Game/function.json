@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "game/{gameId:int?}"
+      "route": "games/{gameId:int?}"
     },
     {
       "type": "http",
